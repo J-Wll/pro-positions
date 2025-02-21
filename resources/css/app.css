@@ -1,0 +1,10 @@
+@font-face{
+    font-family: Hanken Grotesk;
+    src: url("../fonts/Hanken_Grotesk/static/HankenGrotesk-Regular.ttf")
+}
+@import "tailwindcss";
+@source "../views";
+
+@theme {
+    --font-hanken: Hanken Grotesk, sans-serif;
+}
