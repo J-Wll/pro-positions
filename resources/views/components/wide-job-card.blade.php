@@ -1,16 +1,16 @@
-<div class="p-5 bg-white/8 rounded-xl flex flex-row gap-x-6">
-    <img src="http://picsum.photos/seed/{{ rand(1, 1000000) }}/90" alt="" class="rounded-xl">
-    <div class="py-2 font-bold flex-1">
+<x-card-style class="flex flex-row gap-x-6">
+    <x-employer-logo/>
+    <div class="font-bold flex-1 flex flex-col">
         <a href="#" class="text-gray-400 text-sm">Employer Name</a>
-        <h3>Title Job title long</h3>
-        <p>Salary $40,000 Per Year</p>
+        <h3 class="font-bold text-xl mt-1 group-hover:text-blue-500 transition-colors duration-200">Title Job title long</h3>
+        <p class="text-gray-400 text-sm mt-auto">Salary $40,000 Per Year</p>
     </div>
     <div>
-        <div>
-            <x-tag>Tag</x-tag>
-            <x-tag>Tag</x-tag>
-            <x-tag>Tag</x-tag>
+        <div class="space-x-4">
+            <x-tag size="small">Tag</x-tag>
+            <x-tag size="small">Tag</x-tag>
+            <x-tag size="small">Tag</x-tag>
         </div>
 
     </div>
-</div>
+</x-card-style>

@@ -9,7 +9,7 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 
-<body class="bg-gray-900 text-white px-14 font-hanken">
+<body class="bg-gray-900 text-white px-14 font-hanken-grotesk mb-8">
     <div class="">
         <nav class="flex justify-between items-center py-5 border-b border-white/20">
             <div>

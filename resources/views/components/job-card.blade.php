@@ -1,16 +1,16 @@
-<div class="p-5 bg-white/8 rounded-xl flex flex-col text-center">
+<x-card-style class="flex flex-col text-center">
     <div class="self-start">Employer Name</div>
-    <div class="py-6 font-bold">
-        <h3>Title</h3>
-        <p>Salary</p>
+    <div class="py-6">
+        <h3 class="text-xl font-bold group-hover:text-blue-500 transition-colors duration-200">Title</h3>
+        <p class="mt-2">Salary</p>
     </div>
     <div class="flex justify-between items-center mt-auto">
-        <div>
-            <x-tag>Tag</x-tag>
-            <x-tag>Tag</x-tag>
-            <x-tag>Tag</x-tag>
+        <div class="space-x-4">
+            <x-tag size="small">Tag</x-tag>
+            <x-tag size="small">Tag</x-tag>
+            <x-tag size="small">Tag</x-tag>
         </div>
 
-        <img src="http://placehold.co/42" alt="" class="rounded-xl">
+        <x-employer-logo :width="40"/>
     </div>
-</div>
+</x-card-style>
