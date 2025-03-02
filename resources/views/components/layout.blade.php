@@ -20,7 +20,7 @@
             <div class="min-w-[118px]  max-h-[29px]">   
             @endguest
             
-                <a href="" class="max-w-[92px] inline-block">
+                <a href="/" class="max-w-[92px] inline-block">
                     <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="">
                 </a>
             </div>
