@@ -3,10 +3,10 @@
         <section class="my-20 text-center">
             <h1 class="font-bold text-5xl">Let's Find Your Next Job</h1>
 
-            <form action="">
-                <input type="text" placeholder="Web Developer..."
-                    class="rounded-xl bg-white/8 border border-white/50 mt-6 pl-4 pr-6 py-3 w-full max-w-2xl">
-            </form>
+            <x-forms.form action="/search">
+                <x-forms.input placeholder="Web Developer..." :label="false" name="q"
+                    class="rounded-xl bg-white/8 border border-white/50 mt-6 pl-4 pr-6 py-3 w-full max-w-2xl hover:border-white/90 transition-colors duration-200"/>
+            </x-forms.form>
         </section>
 
         <section>
