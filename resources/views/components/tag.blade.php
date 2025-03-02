@@ -6,7 +6,7 @@
         $classes .= ' px-4 py-2';
     }
     if ($size == 'small') {
-        $classes .= ' px-3 py-1 text-sm';
+        $classes .= ' pl-3 pr-2 py-1 text-sm';
     }
 @endphp
 

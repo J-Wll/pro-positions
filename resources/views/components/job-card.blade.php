@@ -7,13 +7,13 @@
         <p class="mt-2">{{$job->salary}}</p>
     </div>
     <div class="flex justify-between items-center mt-auto">
-        <div class="space-x-4 overflow-hidden text-nowrap">
+        <div class="space-x-3 overflow-hidden text-nowrap lg:max-w-54">
             @foreach ($job->tags as $tag)
                 <x-tag size="small" :tag="$tag" />
             @endforeach
 
         </div>
 
-        <x-employer-logo :width="45" />
+        <x-employer-logo :width="45"/>
     </div>
 </x-card-style>
