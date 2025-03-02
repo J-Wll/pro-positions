@@ -3,17 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class SessionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -27,38 +21,35 @@ class SessionController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // validate
+        $validatedAttributes = request()->validate([
+            "email" =>      ["required", "email"],
+            "password" =>   ["required"]
+        ]);
+
+        // try to login
+        if (! Auth::attempt($validatedAttributes)) {
+            throw ValidationException::withMessages([
+                "email" => "Credentials do not match"
+            ]);
+        };
+
+        // if succeed regenerate session token
+        // protects against session hijacking by making old security tokens invalid
+        request()->session()->regenerate();
+
+        // redirect
+        return redirect("/");
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy()
     {
-        //
+        Auth::logout();
+
+        return redirect("/");
     }
 }

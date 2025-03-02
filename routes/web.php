@@ -10,9 +10,13 @@ Route::get('/', [JobController::class, "index"]);
 
 // });
 
-Route::get("/register", [RegisteredUserController::class, "create"]);
-Route::post("/register", [RegisteredUserController::class, "store"]);
+// need to be a guest for these actions
+Route::middleware("guest")->group(function(){
+    Route::get("/register", [RegisteredUserController::class, "create"]);
+    Route::post("/register", [RegisteredUserController::class, "store"]);
+    Route::get("/login", [SessionController::class, "create"]);
+    Route::post("/login", [SessionController::class, "store"]);
+});
 
-Route::get("/login", [SessionController::class, "create"]);
-Route::post("/login", [SessionController::class, "store"]);
-Route::delete("/logout", [SessionController::class, "destroy"]);
+// need to be signed in to logout and etc
+Route::post("/logout", [SessionController::class, "destroy"])->middleware("auth");
