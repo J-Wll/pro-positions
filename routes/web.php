@@ -4,11 +4,13 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [JobController::class, "index"]);
-// __invoke() inside so no array or function name needed
-Route::get('/search', SearchController::class);
+Route::get('/search', SearchController::class); // __invoke() controller inside so no array or function name needed
+Route::get('/tags/{tag:name}', TagController::class); // using the name instead of default id. url having tag name is nicer
+
 
 
 // Route::controller(RegisteredUserController::class. function(){
@@ -16,7 +18,7 @@ Route::get('/search', SearchController::class);
 // });
 
 // need to be a guest for these actions
-Route::middleware("guest")->group(function(){
+Route::middleware("guest")->group(function () {
     Route::get("/register", [RegisteredUserController::class, "create"]);
     Route::post("/register", [RegisteredUserController::class, "store"]);
     Route::get("/login", [SessionController::class, "create"]);
