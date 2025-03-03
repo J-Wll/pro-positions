@@ -7,12 +7,14 @@
         <x-forms.input label="Salary" name="salary" placeholder="£30,000"></x-forms.input>
 
         <x-forms.select label="Schedule" name="schedule">
-            <option class="text-black">Full time</option>
-            <option class="text-black">Part time</option>
+            <option class="text-black">Full Time</option>
+            <option class="text-black">Part Time</option>
         </x-forms.select>
 
         <x-forms.input label="External URL (Your Companies page)" name="url"
             placeholder="https://examplejob.com/this-position"></x-forms.input>
+
+        <x-forms.divider />
 
         <x-forms.input label="Tags (comma separated)" name="tags"
             placeholder="Frontend, Backend, Fullstack"></x-forms.input>

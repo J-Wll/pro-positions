@@ -6,6 +6,10 @@ use App\Models\Job;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
 use App\Models\Tag;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class JobController extends Controller
 {
@@ -15,8 +19,8 @@ class JobController extends Controller
     public function index()
     {
 
-        // $jobs = Job::all()->groupBy("featured");
-        [$jobs, $featuredJobs] = Job::with("tags", "employer")->get()->groupBy("featured");
+        // methods before get effect the DB query, methods after organize the results
+        [$jobs, $featuredJobs] = Job::with("tags", "employer")->latest()->get()->groupBy("featured");
 
         return view("jobs.index", [
             "jobs" => $jobs,
@@ -36,9 +40,30 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreJobRequest $request)
+    public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            "title"     => ["required"],
+            "salary"    => ["required"],
+            "location"  => ["required"],
+            "schedule"  => ["required", Rule::in(["Part Time", "Full Time"])], // value has to be one of those two
+            "url"       => ["required", "active_url"],
+            "tags"      => ["nullable"]
+        ]);
+
+        $attributes["featured"] = $request->has("featured");
+
+        $job = Auth::user()->employer->jobs()->create(Arr::except($attributes, "tags"));
+
+        if ($attributes["tags"] ?? false) {
+            foreach (explode(",", $attributes["tags"]) as $tag) // string to arr
+            {
+                $job->tag(trim(strtolower($tag)));
+            }
+        }
+
+        // could also redirect to the new page for that job
+        return redirect("/");
     }
 
     /**
