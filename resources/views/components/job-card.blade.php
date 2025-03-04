@@ -16,6 +16,6 @@
 
         </div>
 
-        <x-employer-logo :width="45" />
+        <x-employer-logo :logo="$job->employer->logo" :width="45" />
     </div>
 </x-card-style>

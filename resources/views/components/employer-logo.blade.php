@@ -1,3 +1,11 @@
-@props(["width" => 90])
+@props(['logo', 'width' => 90])
 
-<img src="http://picsum.photos/seed/{{ rand(1, 1000000) }}/{{ $width }}" alt="" class="rounded-xl">
+@php
+    // default placeholder image for no specified logo. for seeding
+    $logoWithBackup = asset($logo) ?? 'http://picsum.photos/seed/' . rand(1, 1000000) . "/$width";
+@endphp
+
+<div>
+    <img src={{ asset($logoWithBackup) }} alt="" class="rounded-xl aspect-square" width={{ $width }}
+        height={{ $width }} >
+</div>

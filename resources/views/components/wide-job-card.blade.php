@@ -1,9 +1,10 @@
 @props(['job'])
 
 <x-card-style class="flex flex-row gap-x-6">
-    <x-employer-logo />
+    <x-employer-logo :logo="$job->employer->logo" />
+
     <div class="font-bold flex-1 flex flex-col">
-        <a href="/employers/{{$job->employer->name}}" class="text-gray-400 text-sm" >{{ $job->employer->name }}</a>
+        <a href="/employers/{{ $job->employer->name }}" class="text-gray-400 text-sm">{{ $job->employer->name }}</a>
         <h3 class="font-bold text-xl mt-1 group-hover:text-blue-500 transition-colors duration-200">
             <a href="{{ $job->url }}" target="_blank">{{ $job->title }}</a>
         </h3>

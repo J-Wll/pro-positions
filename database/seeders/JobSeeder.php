@@ -15,8 +15,8 @@ class JobSeeder extends Seeder
      */
     public function run(): void
     {
-        $tags = Tag::factory(3)->create();
-        Job::factory(11)->hasAttached($tags)->create(new Sequence(
+        $tags = Tag::factory(8)->create();
+        $jobs = Job::factory(11)->create(new Sequence(
             [
                 "featured" => false
             ],
@@ -27,5 +27,11 @@ class JobSeeder extends Seeder
                 "featured" => true
             ]
         ));
+
+        foreach ($jobs as $job) {
+            for ($x = 0; $x <= rand(1, 6); $x++) {
+                $job->tag(fake()->randomElement($tags)->name);
+            }
+        }
     }
 }
