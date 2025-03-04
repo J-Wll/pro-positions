@@ -19,7 +19,7 @@
         <x-forms.input label="Tags (comma separated)" name="tags"
             placeholder="Frontend, Backend, Fullstack"></x-forms.input>
 
-        <x-forms.checkbox :label="false" checkboxText="Add to featured (Extra Cost)" name="Featured" />
+        <x-forms.checkbox :label="false" checkboxText="Add to featured (Extra Cost)" name="featured" />
 
 
         <x-forms.button>Publish</x-forms.button>

@@ -58,7 +58,11 @@ class JobController extends Controller
         if ($attributes["tags"] ?? false) {
             foreach (explode(",", $attributes["tags"]) as $tag) // string to arr
             {
-                $job->tag(trim(strtolower($tag)));
+                $tag = trim(strtolower($tag));
+                if (strlen($tag) < 2) {
+                    continue;
+                }
+                $job->tag($tag);
             }
         }
 

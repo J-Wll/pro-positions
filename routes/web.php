@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SearchController;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [JobController::class, "index"]);
 Route::get('/search', SearchController::class); // __invoke() controller inside so no array or function name needed
 Route::get('/tags/{tag:name}', TagController::class); // using the name instead of default id. url having tag name is nicer
+Route::get('employers/{employer:name}', [EmployerController::class, "show"]);
 
 // need to be a guest for these actions
 Route::middleware("guest")->group(function () {
